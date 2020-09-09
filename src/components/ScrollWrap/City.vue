@@ -1,0 +1,34 @@
+<template>
+  <div class="scroll-wrap" ref='wrapper'>
+    <div class="scroll-content">
+      <current-city></current-city>
+      <city-list></city-list>
+    </div>
+  </div>
+</template>
+
+<script>
+import BScroll from '@better-scroll/core'
+import CurrentCity from './CityList/CurrentCity'
+import CityList from './CityList/Index'
+
+export default {
+  name:'CityScrollWrap',
+  mounted(){
+    this.scroll = new BScroll(this.$refs.wrapper,{
+      click:true
+    })
+  },
+  components:{
+    CurrentCity,
+    CityList
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+  .scroll-wrap{
+    overflow: hidden;
+}
+
+</style>
