@@ -28,7 +28,7 @@ export default {
 
 <style lang="stylus" scoped>
   .scroll-wrap{
-    overflow: hidden;
+    // overflow: hidden;
 }
 
 </style>
