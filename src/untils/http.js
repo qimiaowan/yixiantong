@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-
+import tools from './tools'
 class HTTP {
   axiosPost(option) {
     axios({
@@ -9,7 +8,7 @@ class HTTP {
       headers: {
         'Content-Type':'application/x-www-form-urlencoded'
       },
-      data:option.data
+      data:tools.xlhString(option.data)
     }).then(res => {
       option.success(res);
     }).catch(res => {

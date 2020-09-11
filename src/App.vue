@@ -9,6 +9,7 @@
   body,
   #app,
   .container {
-    height:100%;
+    height 100%;
+    font-size .12rem;
   }
 </style>

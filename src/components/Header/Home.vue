@@ -24,6 +24,7 @@ export default {
     flex-row();
     width 100%;
     height $headerHeight;
+    flex-shrink:0;
     background-color $defaultBgColor;
   }
 </style>

@@ -12,8 +12,6 @@ export default {
   methods:{
     ...mapMutations(['selectorCity']),
     onCityClick(cityInfo){
-      console.log(1);
-
       this.selectorCity(cityInfo);
       this.$router.push('/');
     }

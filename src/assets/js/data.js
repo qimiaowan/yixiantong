@@ -13,10 +13,10 @@ export default [
   },
   {
     "cityId": 3,
-    "cityName":"苏州"
+    "cityName":"广州"
   },
   {
     "cityId": 4,
-    "cityName":"广东"
+    "cityName":"深圳"
   }
 ]
