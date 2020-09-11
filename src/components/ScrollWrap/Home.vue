@@ -1,15 +1,17 @@
 <template>
   <div class="scroll-wrap" ref='wrapper'>
-    <div class="scroll-content">
-      <tab-wrap></tab-wrap>
-      <home-title :title="homeTitleTxt.viewTxt"></home-title>
-      <view-wrap :viewDatas="homeDataArr.viewDatas"></view-wrap>
-      <home-title :title="homeTitleTxt.foodTxt"></home-title>
-      <food-wrap :foodDatas="homeDataArr.foodDatas"></food-wrap>
-      <home-title :title="homeTitleTxt.hotelTxt"></home-title>
-      <hotel-wrap :hotelDatas="homeDataArr.hotelDatas"></hotel-wrap>
-      <home-title :title="homeTitleTxt.massageTxt"></home-title>
-      <home-title :title="homeTitleTxt.ktvTxt"></home-title>
+    <div class="scroll-content" ref="content">
+        <tab-wrap></tab-wrap>
+        <home-title :title="homeTitleTxt.viewTxt"></home-title>
+        <view-wrap :viewDatas="homeDataArr.viewDatas"></view-wrap>
+        <home-title :title="homeTitleTxt.foodTxt"></home-title>
+        <food-wrap :foodDatas="homeDataArr.foodDatas"></food-wrap>
+        <home-title :title="homeTitleTxt.hotelTxt"></home-title>
+        <hotel-wrap :hotelDatas="homeDataArr.hotelDatas"></hotel-wrap>
+        <home-title :title="homeTitleTxt.massageTxt"></home-title>
+        <massage-wrap :massageDatas="homeDataArr.massageDatas"></massage-wrap>
+        <home-title :title="homeTitleTxt.ktvTxt"></home-title>
+        <ktv-wrap :ktvDatas="homeDataArr.ktvDatas"></ktv-wrap>
     </div>
   </div>
 </template>
@@ -21,10 +23,13 @@ import homeTitle from './Sub/HomeTitle'
 import viewWrap from './ViewList/Index'
 import foodWrap from './FoodList/Index'
 import hotelWrap from './HotelList/Index'
+import massageWrap from './MassageList/Index'
+import ktvWrap from './KtvList/Index'
 
 import { mapState } from 'vuex'
 import { IndexModel } from '@/model/index.js'
 import tools from '@/untils/tools.js'
+
 
 export default {
   name:"scrollTab",
@@ -48,10 +53,21 @@ export default {
     }
   },
   mounted(){
+
+    if(!this.scroll){
       this.scroll = new BScroll(this.$refs.wrapper,{
-        click:true
-      });
-      this.getHomesData(this.cityId);
+          click:true,
+      })
+    }else{
+      this.scroll.refresh()
+    }
+
+    setTimeout(()=>{
+      this.scroll.refresh()
+    },200)
+
+
+    this.getHomesData(this.cityId);
   },
   computed:{
     ...mapState(['cityId'])
@@ -61,7 +77,9 @@ export default {
     homeTitle,
     viewWrap,
     foodWrap,
-    hotelWrap
+    hotelWrap,
+    massageWrap,
+    ktvWrap
   },
   methods:{
     getHomesData(cityId){
@@ -74,8 +92,6 @@ export default {
           this.homeDataArr.ktvDatas = data.ktvDatas;
           this.homeDataArr.massageDatas = data.massageDatas;
           this.homeDataArr.viewDatas = data.viewDatas;
-          console.log(this.homeDataArr.foodDatas);
-
         }
       })
     }
@@ -83,6 +99,13 @@ export default {
 }
 </script>
 
-<style>
+<style lang="stylus" scoped>
+  .scroll-wrap{
+    height 100%;
+    overflow hidden
+  }
+  .scroll-content{
+    min-height 100%;
+  }
 
 </style>

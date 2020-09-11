@@ -15,9 +15,14 @@ import CityList from './CityList/Index'
 export default {
   name:'CityScrollWrap',
   mounted(){
-    this.scroll = new BScroll(this.$refs.wrapper,{
-      click:true
-    })
+    if(!this.scroll){
+      this.scroll = new BScroll(this.$refs.wrapper,{
+          click:true,
+      })
+    }else{
+      this.scroll.refresh()
+    }
+    console.log(this.scroll);
   },
   components:{
     CurrentCity,

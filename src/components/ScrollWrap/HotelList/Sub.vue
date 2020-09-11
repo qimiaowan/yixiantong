@@ -82,6 +82,7 @@ export default {
           line-height .2rem;
           display flex;
           justify-content space-between;
+          color #000;
           .price{
             color $defaultGreen;
             font-size .12rem;
@@ -92,9 +93,8 @@ export default {
           }
           .item{
             font-size .14rem;
-            color #000;
           }
-      }
+        }
       }
     }
   }
