@@ -1,19 +1,20 @@
 import config from '../untils/config';
 import { HTTP } from '../untils/http';
 
-class IndexModel extends HTTP {
-  getHomeData(cityId) {
+class DetailModel extends HTTP {
+  getDetail(field,id) {
     return new Promise((resolve, reject) => {
       this.axiosPost({
-        url: config.API.GET_HOME_DATAS,
+        url: config.API.GET_DETAIL,
         data: {
-          cityId
+          field,
+          id
         },
         success(res) {
           resolve({
-            status: 1,
-            data:res.data
-          })
+            data:res.data,
+            status:1
+          });
         },
         error(err) {
           resolve({
@@ -25,4 +26,4 @@ class IndexModel extends HTTP {
   }
 }
 
-export {IndexModel}
+export { DetailModel }

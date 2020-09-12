@@ -35,6 +35,7 @@ export default {
   name:"scrollTab",
   data(){
     return {
+      currentCityId:0,
       homeTitleTxt:{
         foodTxt:"推荐美食",
         hotelTxt:"推荐酒店",
@@ -53,7 +54,6 @@ export default {
     }
   },
   mounted(){
-
     if(!this.scroll){
       this.scroll = new BScroll(this.$refs.wrapper,{
           click:true,
@@ -66,8 +66,14 @@ export default {
       this.scroll.refresh()
     },200)
 
-
+    this.currentCityId = this.cityId;
     this.getHomesData(this.cityId);
+  },
+  activated(){
+    if(this.cityId!=this.currentCityId){
+      this.currentCityId = this.cityId;
+      this.getHomesData(this.currentCityId);
+    }
   },
   computed:{
     ...mapState(['cityId'])
