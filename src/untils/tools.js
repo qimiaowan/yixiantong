@@ -15,8 +15,17 @@ function dataArray(arr, key) {
   })
 }
 
+function toArray(str) {
+  return JSON.parse(str);
+}
+function toSplitArray(str) {
+  return str.split(",");
+}
+
 
 export default{
   xlhString,
-  dataArray
+  dataArray,
+  toArray,
+  toSplitArray
 }

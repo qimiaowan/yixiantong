@@ -11,6 +11,7 @@ import 'styles/iconfont.css'
 
 import 'js/common.js'
 
+
 Vue.config.productionTip = false
 
 new Vue({

@@ -37,6 +37,7 @@ export default {
     height $headerHeight;
     font-size .18rem;
     background-color $defaultBgColor;
+    flex-shrink: 0;
     vh-center();
   }
 </style>
