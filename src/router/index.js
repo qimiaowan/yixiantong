@@ -30,6 +30,11 @@ Vue.use(VueRouter)
     name: 'List',
     component: () => import(/* webpackChunkName: "list" */ '@/views/list.vue')
   },
+  {
+    path: '/search',
+    name: 'Search',
+    component: () => import(/* webpackChunkName: "search" */ '@/views/search.vue')
+  },
 ]
 
 const router = new VueRouter({

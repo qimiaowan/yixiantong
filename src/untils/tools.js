@@ -22,10 +22,39 @@ function toSplitArray(str) {
   return str.split(",");
 }
 
+function trimStr(str) {
+  return str.replace(/\s+/g, "");
+}
 
-export default{
+function throttle(fun, delay) {
+  let oldTime = 0,
+      t = null;
+  return function () {
+    if (t) {
+      clearTimeout(t);
+    }
+    let args = [...arguments],
+        that = this,
+      newTime = +new Date();
+
+    if(newTime - oldTime >= delay) {
+      fun.apply(that, args);
+      oldTime = +new Date();
+    } else {
+      t = setTimeout(() => {
+        fun.apply(that, args)
+        oldTime = +new Date();;
+      }, delay)
+    }
+  }
+}
+
+
+export default {
   xlhString,
   dataArray,
   toArray,
-  toSplitArray
+  toSplitArray,
+  trimStr,
+  throttle
 }

@@ -36,12 +36,9 @@ export default {
   },
   computed:{
     ...mapState(['cityId','field']),
-
   },
   watch:{
     cityId(){
-      console.log(this.listData);
-
       this.getListData(this.cityId,this.field);
       setTimeout(()=>{
         this.scroll.refresh();

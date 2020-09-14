@@ -17,10 +17,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+@import '~styles/mixins.styl'
   .loading{
-    display flex;
-    align-items center;
-    justify-content center;
+    vh-center();
     height 3rem;
     svg{
       width .3rem;
