@@ -1,7 +1,7 @@
 <template>
   <div class="detail-price">
     <span class="iconfont icon-552cc14536532"></span>
-    <span class="price">￥{{price}}元起</span>
+    <span class="price">￥{{price||0}}元起</span>
   </div>
 </template>
 

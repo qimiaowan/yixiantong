@@ -23,6 +23,8 @@ export default {
   methods:{
     ...mapMutations(['selectorField']),
     onRouterTo(field){
+      console.log(field);
+
       this.selectorField(field);
       this.$router.push('/list');
     }

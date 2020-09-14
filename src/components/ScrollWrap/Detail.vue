@@ -1,12 +1,15 @@
 <template>
   <div class="scroll-wrap" ref='wrapper'>
     <div class="scroll-content" ref="content">
-      <swiper :imgArr="detailData.pics"></swiper>
-      <food-detail v-if="field=='food'" :detailFoodData="detailData"></food-detail>
-      <hotel-detail v-if="field=='hotel'" :detailHotelData="detailData"></hotel-detail>
-      <ktv-detail v-if="field=='ktv'" :detailKtvData="detailData"></ktv-detail>
-      <view-detail v-if="field=='view'" :detailViewData="detailData"></view-detail>
-      <massage-detail v-if="field=='massage'" :detailMassageData="detailData"></massage-detail>
+      <div v-if="!loadingShow">
+        <swiper :imgArr="detailData.pics"></swiper>
+        <food-detail v-if="field=='food'" :detailFoodData="detailData"></food-detail>
+        <hotel-detail v-if="field=='hotel'" :detailHotelData="detailData"></hotel-detail>
+        <ktv-detail v-if="field=='ktv'" :detailKtvData="detailData"></ktv-detail>
+        <view-detail v-if="field=='view'" :detailViewData="detailData"></view-detail>
+        <massage-detail v-if="field=='massage'" :detailMassageData="detailData"></massage-detail>
+      </div>
+      <loading :loadingShow="loadingShow"></loading>
     </div>
   </div>
 </template>
@@ -22,6 +25,9 @@ import hotelDetail from './Detail/Hotel'
 import ktvDetail from './Detail/Ktv'
 import massageDetail from './Detail/Massage'
 import viewDetail from './Detail/View'
+
+import loading from 'components/ScrollWrap/Sub/Loading'
+
 export default {
   name:"detailScroll",
   components:{
@@ -30,13 +36,15 @@ export default {
     hotelDetail,
     ktvDetail,
     massageDetail,
-    viewDetail
+    viewDetail,
+    loading
   },
   data(){
     return {
       detailData:{},
       field:undefined,
-      id:undefined
+      id:undefined,
+      loadingShow:true
     }
   },
   created(){
@@ -52,14 +60,26 @@ export default {
       this.scroll.refresh()
     }
      setTimeout(()=>{
-      this.scroll.refresh()
-      console.log(this.scroll);
-
+      this.scroll.refresh();
+      this.scroll.scrollTo(0,0);
     },200)
     this.getDetailData(this.field,this.id);
   },
+   activated(){
+    if(this.id!=this.$route.query.id||this.field!=this.$route.query.field){
+      this.field = this.$route.query.field;
+      this.id = this.$route.query.id;
+      this.getDetailData(this.field,this.id);
+      setTimeout(()=>{
+        this.scroll.refresh();
+        this.scroll.scrollTo(0,0);
+      },200)
+    }
+  },
   methods:{
     getDetailData(field,id){
+      this.detailData = {};
+      this.loadingShow = true;
       const detailModel = new DetailModel();
       detailModel.getDetail(field,id).then(res=>{
         if(res&&res.status==1){
@@ -67,8 +87,7 @@ export default {
           this.detailData = JSON.parse(JSON.stringify(data));
           this.detailData.pics&&(this.detailData.pics = tools.toArray(this.detailData.pics));
           this.detailData.keyword&&(this.detailData.keyword = tools.toSplitArray(this.detailData.keyword));
-          console.log(this.detailData);
-
+          this.loadingShow = false;
         }
       })
     }

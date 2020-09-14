@@ -9,7 +9,10 @@
 export default {
   name:"detailAddress",
   props:{
-    address:String
+    address:{
+      type:String,
+      default:"加载中"
+    }
   }
 }
 </script>

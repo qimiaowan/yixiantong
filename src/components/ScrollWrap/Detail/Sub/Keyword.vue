@@ -39,7 +39,7 @@ export default {
       .item{
         padding .03rem .05rem;
         border 1px solid $defaultGreen;
-        border-radius .05rem;
+        border-radius .03rem;
         margin-right .05rem;
         margin-bottom .05rem;
         color $defaultGreen;

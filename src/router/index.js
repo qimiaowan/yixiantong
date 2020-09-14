@@ -25,6 +25,11 @@ Vue.use(VueRouter)
     name: 'Detail',
     component: () => import(/* webpackChunkName: "detail" */ '@/views/detail.vue')
   },
+  {
+    path: '/list',
+    name: 'List',
+    component: () => import(/* webpackChunkName: "list" */ '@/views/list.vue')
+  },
 ]
 
 const router = new VueRouter({

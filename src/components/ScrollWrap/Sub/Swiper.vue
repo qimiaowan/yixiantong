@@ -1,6 +1,6 @@
 <template>
   <div class="scroll-swiper">
-    <el-carousel :interval="1000" arrow="never">
+    <el-carousel :interval="3000" arrow="never">
       <el-carousel-item v-for="(item,index) in imgArr" :key="index">
         <img class="swiper-img" :src="item" alt="">
       </el-carousel-item>

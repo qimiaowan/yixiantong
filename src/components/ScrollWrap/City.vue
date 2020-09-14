@@ -22,7 +22,11 @@ export default {
     }else{
       this.scroll.refresh()
     }
-    console.log(this.scroll);
+
+    setTimeout(()=>{
+      this.scroll.refresh();
+      this.scroll.scrollTo(0,0);
+    },200)
   },
   components:{
     CurrentCity,
